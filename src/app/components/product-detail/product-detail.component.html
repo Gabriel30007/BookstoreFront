@@ -1,0 +1,13 @@
+<div class="singleProduct">
+    <div class="singleProductContainer">
+        <img class="singleProductImg" src="data:image/jpg;base64, {{product.photoID}}">
+        <div>
+            <p class="product-text-title">{{product.name}}</p>
+            <p class="card-text">Price: {{product.price}} ₴</p>
+            <p class="card-text">description:</p>
+            <p class="card-text">{{product.description}}</p>
+            <button (click)="BuyProduct()" class="btn btn-primary">Buy</button>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,34 @@
+.product-container{
+    width: 100%;
+    min-height: 100px;
+    padding: 20px 180px;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 40px;
+}
+.product-img{
+    width: 200px;
+    height: 150px;
+    box-sizing: border-box;
+    background-image:inherit;
+    border-radius: 10px;
+}
+.product-card{
+    width: 250px;
+    height: 320px;
+    margin-bottom: 30px;
+    border: 1px solid black;
+    background-color: #1c232a;
+    color: white;
+    border-radius: 15px;
+    transition: transform 0.5s;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.product-card:hover{
+    transform: scale(1.05);
+}
+.product-card-block{
+    width: 100%;
+    height: 100px;
+}
