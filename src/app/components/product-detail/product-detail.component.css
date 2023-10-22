@@ -1,0 +1,23 @@
+.singleProductContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.singleProductImg{
+    width: 350px;
+    height: 350px;
+}
+.singleProduct{
+    width: 100%;
+    height: 300px;
+    padding: 20px 200px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+.product-text-title{
+    font-size: 22px;
+    
+}
