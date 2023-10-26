@@ -1,14 +1,43 @@
-<div class="product-container">
-  <div class="product-card" *ngFor="let product of content; let i = index">
-    <div class="product-card-bloc">
-      <div class="d-flex align-items-center justify-content-center" style="width:100%"> 
-        <img class="product-img" src="data:image/jpg;base64, {{product.photoID}}">
+
+
+<div class=" d-flex flex-row justify-content-around">
+  <div class="d-flex flex-column col-sm-3 filter-container d-flex align-items-center mt-2">
+    <div class="form-group has-search mt-2" >  
+      <span class="fa fa-search form-control-feedback"></span>
+      <input [(ngModel)]="searchFild" name="myVariableInput" type="text" class="form-control" placeholder="Search" (input)="onSearchChange()">
+    </div>
+    <br>
+    <label>Sort</label>
+    <div class="d-flex flex-row">
+      <div class="com-sm-6">
+        <select class="form-select">
+          <option selected value="Name">Name</option>
+          <option value="Price">Price</option>
+        </select>
       </div>
-      <div class="">
-        <p class="card-title">{{product.name}}</p>
-        <p class="card-text">{{product.price}} ₴</p>
-        <a href="#" [routerLink]="['/product',product.id]" class="btn btn-primary">Buy</a>
+      <div class="com-sm-6">
+        <select class="form-select" >
+          <option  value="Desc">Descending</option>
+          <option selected value="Asc">Ascending</option>
+        </select>
+      </div>
+    </div>
+    <button type="button" class="btn btn-outline-secondary mt-3">Застосувати</button>
+  </div>
+
+  <div class="product-container">
+    <div class="product-card" *ngFor="let product of contentFiltered; let i = index">
+      <div class="product-card-bloc">
+        <div class="d-flex align-items-center justify-content-center" style="width:100%"> 
+          <img class="product-img" src="data:image/jpg;base64, {{product.photoID}}">
+        </div>
+        <div class="">
+          <p class="card-title">{{product.name}}</p>
+          <p class="card-text">{{product.price | number:'1.2'}} ₴</p>
+          <a href="#" [routerLink]="['/product',product.id]" class="btn btn-primary">Buy</a>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
