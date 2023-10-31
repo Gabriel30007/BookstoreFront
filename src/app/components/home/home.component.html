@@ -1,5 +1,180 @@
-<div class="container center-registerForm">
+<!-- <div class="container center-registerForm">
       <p>{{ content }}</p>
-  </div>
+  </div> -->
 
-  
+<div class="container-center">
+    <div class="homeContainer">
+        <div class="homeContainer-middle">
+            <p class="homeContainer-middle-txt">Відкрийте cвіт cлова з Нами</p>
+        </div>
+    </div>
+    <div class="options">
+        <div class="options-card">
+            <img src="../../../assets/images/home/car.svg" alt="" class="options-card-img">
+            <div class="options-card-text">
+                <p class="options-card-head">Швидка доставка</p>
+                <p class="options-card-description">Ваші замовлення будуть у Вас в руках вже через  2 робочих дні</p>
+            </div>
+        </div>
+        <div class="options-card">
+            <img src="../../../assets/images/home/gift.svg" alt="" class="options-card-gift">
+            <div>
+                <p class="options-card-head">Подарок 
+                    за реєстрацію</p>
+                <p class="options-card-description">Гарантований подарок до замовлення за реєстрацію</p>
+            </div>
+        </div>
+        <div class="options-card">
+            <img src="../../../assets/images/home/question.svg" alt="" class="options-card-img">
+            <div>
+                <p class="options-card-head">Підтримка 24/7</p>
+                <p class="options-card-description">Допоможемо з вибором в будь який час </p>
+            </div>
+        </div>
+        <div class="options-card">
+            <img src="../../../assets/images/home/bill.svg" alt="" class="options-card-img">
+            <div>
+                <p class="options-card-head">Зручна оплата</p>
+                <p class="options-card-description">Вибирайте зручний для себе спосіб оплати</p>
+            </div>
+        </div>
+    </div>
+    <p>БЕСТСЕЛЕРИ</p>
+    <div class="bestsellers">
+        <!-- productArr -->
+        <!-- <div class="product-card" *ngFor="let product of productArr; let i = index">
+            <div class="product-card-img">
+                <img class="product-img" src="data:image/jpg;base64, {{product.photoID}}">
+            </div>
+        </div> -->
+
+        <!-- <div class="glide__container">
+            <div class="glide">
+                <div class="glide__track" data-glide-el="track">
+                    <ul class="glide__slides" >
+                        <li class="glide__slide" *ngFor="let product of productArr; let i = index">
+                            <div class="card">
+                                <div class="img__container">
+                                    <img class="product-img" src="data:image/jpg;base64, {{product.photoID}}">
+                                </div>
+                                <p class="card__txt">Crispy Crouton Salad</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="glide__arrows" data-glide-el="controls">
+                    <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><i
+                            class="fas fa-chevron fa-chevron-left"></i></button>
+                    <button class="glide__arrow glide__arrow--right" data-glide-dir=">"><i
+                            class="fas fa-chevron fa-chevron-right"></i></button>
+                </div>
+            </div>
+    
+        </div> -->
+        <div class="glide__container">
+            <div class="glide">
+                <div class="glide__track" data-glide-el="track">
+                    <ul class="glide__slides">
+                        <li class="glide__slide">
+                            <div class="card">
+                                <div class="img__container">
+                                    <img src="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+                                        alt="salad" class="card__img">
+                                </div>
+                                <p class="card__txt">Crispy Crouton Salad</p>
+                            </div>
+                        </li>
+                        <li class="glide__slide">
+                            <div class="card">
+                                <div class="img__container">
+                                    <img src="https://images.unsplash.com/photo-1544726982-b414d58fabaa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+                                        alt="pancake" class="card__img">
+                                </div>
+                                <p class="card__txt">Pancake</p>
+                            </div>
+                        </li>
+                        <li class="glide__slide">
+                            <div class="card">
+                                <div class="img__container">
+                                    <img src="https://images.unsplash.com/photo-1516919549054-e08258825f80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+                                        alt="donuts" class="card__img">
+                                </div>
+                                <p class="card__txt">Crispy and Creamy Doughnuts</p>
+                            </div>
+                        </li>
+                        <li class="glide__slide">
+                            <div class="card">
+                                <div class="img__container">
+                                    <img src="https://images.unsplash.com/photo-1589627461407-6257b1acf0fd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                                        alt="pancakes" class="card__img">
+                                </div>
+                                <p class="card__txt">Pancakes with yogurt</p>
+                            </div>
+                        </li>
+                        <li class="glide__slide">
+                            <div class="card">
+                                <div class="img__container">
+                                    <img src="https://images.unsplash.com/photo-1528137871618-79d2761e3fd5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+                                        alt="pizza" class="card__img">
+                                </div>
+                                <p class="card__txt">Perfect Neapolitan Pizza</p>
+                            </div>
+                        </li>
+                        <li class="glide__slide">
+                            <div class="card">
+                                <div class="img__container">
+                                    <img src="https://images.unsplash.com/photo-1542344807-21226ec94b39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                                        alt="hot dog" class="card__img">
+                                </div>
+                                <p class="card__txt">German Hot Dogs Buns</p>
+                            </div>
+                        </li>
+                        <li class="glide__slide">
+                            <div class="card">
+                                <div class="img__container">
+                                    <img src="https://images.unsplash.com/photo-1567446991062-e8a1209f70b4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+                                        alt="hamburger" class="card__img">
+                                </div>
+                                <p class="card__txt">Double Patty Burgers</p>
+                            </div>
+                        </li>
+                        <li class="glide__slide">
+                            <div class="card">
+                                <div class="img__container">
+                                    <img src="https://images.unsplash.com/photo-1528740096961-3798add19cb7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+                                        alt="oreo shake" class="card__img">
+                                </div>
+                                <p class="card__txt">Oreo Shake</p>
+                            </div>
+                        </li>
+                        <li class="glide__slide">
+                            <div class="card">
+                                <div class="img__container">
+                                    <img src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                                        alt="shake" class="card__img">
+                                </div>
+                                <p class="card__txt">Strawberry Shake</p>
+                            </div>
+                        </li>
+    
+                    </ul>
+                </div>
+                <div class="glide__arrows" data-glide-el="controls">
+                    <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><i
+                            class="fas fa-chevron fa-chevron-left"></i></button>
+                    <button class="glide__arrow glide__arrow--right" data-glide-dir=">"><i
+                            class="fas fa-chevron fa-chevron-right"></i></button>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+<script>
+    new Glide('.glide', {
+        type: 'carousel',
+        startAt: 0,
+        perView: 3
+    }).mount()
+</script>

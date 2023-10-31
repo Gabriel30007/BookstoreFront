@@ -1,6 +1,30 @@
 <div id="app">
-  <nav class="navbar navbar-expand navbar-dark bg-dark stickToTop">
-    <ul class="navbar-nav mr-auto" routerLinkActive="active">
+  <nav class="bookstore-nav stickToTop">
+    <ul class="bookstore-nav-left">
+      <a href="/home" class="bookstore-nav-left-txt" routerLink="home">BOOKSTORE</a>
+    </ul>
+    <ul class="bookstore-nav-middle">
+      <li>
+        <a href="/home" class="bookstore-nav-middle-txt" routerLink="home">Головна</a>
+      </li>
+      <li  >  <!-- *ngIf="isLoggedIn" -->
+        <a href="/product" class="bookstore-nav-middle-txt" routerLink="product">Каталог</a>
+      </li>
+      <li >   <!--*ngIf="showAdminBoard" -->
+        <a href="/admin" class="bookstore-nav-middle-txt" routerLink="admin">Admin Board</a>
+      </li>
+      
+    </ul>
+    <ul class="bookstore-nav-right">
+        <img src="../assets/images/basket.svg">
+        <img src="../assets/images/like.svg">
+        <div class="bookstore-nav-right-login">
+          <a *ngIf="!isLoggedIn" href="/register" class="bookstore-nav-right-txt" routerLink="register">Sign Up</a>
+          <a *ngIf="!isLoggedIn" href="/login" class="bookstore-nav-right-txt" routerLink="login">Login</a>
+          <a *ngIf="isLoggedIn" href class="bookstore-nav-right-txt" [class.logined] = "isLoggedIn" (click)="logout()">LogOut</a>
+        </div>
+    </ul>
+    <!-- <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item">
         <a href="/home" class="nav-link" routerLink="home">Home </a>
       </li>
@@ -31,10 +55,10 @@
       <li class="nav-item">
         <a href class="nav-link" (click)="logout()">LogOut</a>
       </li>
-    </ul>
+    </ul> -->
   </nav>
 
-  <div>
+  <main>
     <router-outlet></router-outlet>
-  </div>
+  </main>
 </div>
