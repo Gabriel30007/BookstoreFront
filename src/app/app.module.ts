@@ -16,6 +16,11 @@ import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalWindowComponent } from './components/modal-window/modal-window.component';
 import {AuthInterceptor} from './http-interceptors/auth.interceptor'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IvyCarouselModule} from 'angular-responsive-carousel';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +40,9 @@ import {AuthInterceptor} from './http-interceptors/auth.interceptor'
     FormsModule,
     HttpClientModule,
     NgbModule,
+    IvyCarouselModule,
+    CarouselModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule
   ],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
