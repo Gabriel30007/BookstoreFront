@@ -9,12 +9,12 @@ export class StorageService {
   constructor() {}
 
   clean(): void {
-    window.sessionStorage.clear();
+    window.localStorage.clear();
   }
 
   public saveUser(user: any): void {
-    window.sessionStorage.removeItem(USER_KEY);
-    window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+    window.localStorage.removeItem(USER_KEY);
+    window.localStorage.setItem(USER_KEY, JSON.stringify(user));
     this.saveUserID(user);
   }
 
@@ -27,7 +27,7 @@ export class StorageService {
     return {};
   }
   public getUserID(): any {
-    const id = window.sessionStorage.getItem("user-id");
+    const id = window.localStorage.getItem("user-id");
     if (id) {
       return JSON.parse(id);
     }
@@ -35,12 +35,12 @@ export class StorageService {
     return {};
   }
   public saveUserID(user: any): void {
-    window.sessionStorage.removeItem("user-id");
-    window.sessionStorage.setItem("user-id", JSON.stringify(user.id));
+    window.localStorage.removeItem("user-id");
+    window.localStorage.setItem("user-id", JSON.stringify(user.id));
   }
 
   public isLoggedIn(): boolean {
-    const user = window.sessionStorage.getItem(USER_KEY);
+    const user = window.localStorage.getItem(USER_KEY);
     if (user) {
       return true;
     }

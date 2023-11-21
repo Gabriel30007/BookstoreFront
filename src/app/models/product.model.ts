@@ -10,6 +10,8 @@ export class Product {
     price?: number;
     description?: string;
     photoID? : string;
+    genre? : string;
+    authorID? : string;
   
     constructor() {
       this.id ="1";
@@ -18,5 +20,7 @@ export class Product {
       this.name = "";
       this.description = "";
       this.photoID = "";
+      this.genre = "";
+      this.authorID = "";
     }
   }

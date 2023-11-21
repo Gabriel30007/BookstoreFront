@@ -52,7 +52,8 @@ export class HomeComponent implements OnInit {
     if (code) {
       this.authService.getDataByAuthCode(code).subscribe({
         next: data => {
-          console.log("data gathered");
+          this.storageService.saveUser(data);
+          window.location.reload();
         },
         error: err => {
           console.log(err)
