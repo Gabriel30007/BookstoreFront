@@ -1,4 +1,4 @@
-<div id="app">
+<div id="app" class="MySectionContainer">
   <nav class="bookstore-nav stickToTop">
     <ul class="bookstore-nav-left">
       <a href="/home" class="bookstore-nav-left-txt" routerLink="home">BOOKSTORE</a>
@@ -7,27 +7,59 @@
       <li>
         <a href="/home" class="bookstore-nav-middle-txt" routerLink="home">Головна</a>
       </li>
-      <li  >  <!-- *ngIf="isLoggedIn" -->
+      <li> <!-- *ngIf="isLoggedIn" -->
         <a href="/product" class="bookstore-nav-middle-txt" routerLink="product">Каталог</a>
       </li>
-      <li >   <!--*ngIf="showAdminBoard" -->
+      <li> <!--*ngIf="showAdminBoard" -->
         <a href="/admin" class="bookstore-nav-middle-txt" routerLink="admin">Admin Board</a>
       </li>
-      
+
     </ul>
     <ul class="bookstore-nav-right">
-        <img src="../assets/images/basket.svg">
-        <img src="../assets/images/like.svg">
-        <div class="bookstore-nav-right-login">
-          <a *ngIf="!isLoggedIn" href="/register" class="bookstore-nav-right-txt" routerLink="register">Sign Up</a>
-          <a *ngIf="!isLoggedIn" href="/login" class="bookstore-nav-right-txt" routerLink="login">Login</a>
-          <a *ngIf="isLoggedIn" href class="bookstore-nav-right-txt" [class.logined] = "isLoggedIn" (click)="logout()">LogOut</a>
-        </div>
+      <img src="../assets/images/basket.svg">
+      <img src="../assets/images/like.svg">
+      <div class="bookstore-nav-right-login">
+        <a *ngIf="!isLoggedIn" href="/register" class="bookstore-nav-right-txt" routerLink="register">Sign Up</a>
+        <a *ngIf="!isLoggedIn" href="/login" class="bookstore-nav-right-txt" routerLink="login">Login</a>
+        <a *ngIf="isLoggedIn" href class="bookstore-nav-right-txt" [class.logined]="isLoggedIn"
+          (click)="logout()">LogOut</a>
+      </div>
     </ul>
 
   </nav>
 
-  <main>
+  <main class="main-content">
     <router-outlet></router-outlet>
   </main>
+  <footer class="footer">
+    <div class="footer-container">
+      <p class="footer-container__header">Контактна 
+        інформація</p>
+      <p class="footer-container__middle">+ 38(044) 876 54 32</p>
+      <p class="footer-container__middle">+ 38(044) 876 54 32</p>
+      <p class="footer-container__bottom">Україна, Львів, 
+        вул. Шевченка 189, 
+        79012</p>
+        <div class="footer-container-icons">
+          <img class="footer-container-icons__img" src="../assets/images/instagram.png" alt="">
+          <img class="footer-container-icons__img" src="../assets/images/facebook.png" alt="">
+          <img class="footer-container-icons__img" src="../assets/images/twitter.png" alt="">
+          <img class="footer-container-icons__img" src="../assets/images/youtube.png" alt="">
+      </div>
+    </div>
+    <div class="footer-container">
+      <p class="footer-container__header" style="margin-bottom: -5px;">Навігація</p>
+      <a href="/home" routerLink="home" class="footer-container__middle" >Новинки</a>
+      <a href="/home" routerLink="home" class="footer-container__middle">Бестселери</a>
+      <a href="/product" routerLink="product" class="footer-container__middle">Каталог</a>
+      <a class="footer-container__middle">Кошик</a>
+      <p class="footer-container__bottom" style="margin-bottom: -5px;">Оформлення замовлення</p>
+      <div class="footer-container-icons" >
+          <img class="footer-container-icons__img" src="../assets/images/instagram.png" alt="">
+          <img class="footer-container-icons__img" src="../assets/images/facebook.png" alt="">
+          <img class="footer-container-icons__img" src="../assets/images/twitter.png" alt="">
+          <img class="footer-container-icons__img" src="../assets/images/youtube.png" alt="">
+      </div>
+    </div>
+  </footer>
 </div>

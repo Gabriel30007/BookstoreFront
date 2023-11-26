@@ -54,6 +54,6 @@ export class StorageService {
   }
 
   public getAuthCodeVerifier():any{
-    return window.localStorage.getItem("CodeVerifier");
+    return window.localStorage.getItem("CodeVerifier") ?? 'none';
   }
 }
