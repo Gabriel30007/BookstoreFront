@@ -1,0 +1,30 @@
+.bread-crumbs-container {
+    width: 100%;
+    height: 285px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.bread-crumbs {
+    background-image: url("../../../assets/images/bread-crumbs/background.png");
+    border-radius: 10px;
+    background-color: #1E2D2F;
+    width: 1280px;
+    height: 285px;
+    padding-top: 119px;
+    box-sizing: border-box;
+}
+
+.bread-crumbs-text {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.anchorActive{
+    pointer-events: none;
+}

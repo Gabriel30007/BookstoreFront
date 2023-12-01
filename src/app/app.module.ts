@@ -19,6 +19,7 @@ import {AuthInterceptor} from './http-interceptors/auth.interceptor'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IvyCarouselModule} from 'angular-responsive-carousel';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { BreadCrumbsComponent } from './components/bread-crumbs/bread-crumbs.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     ProductComponent,
     ProductDetailComponent,
     ModalWindowComponent,
+    BreadCrumbsComponent,
   ],
   imports: [
     BrowserModule,

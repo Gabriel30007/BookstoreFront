@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild,OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product } from '../../models/product.model';
 import { StorageService } from '../../_services/storage.service';
+import { BreadCrumbsComponent } from '../bread-crumbs/bread-crumbs.component';
+
 
 @Component({
   selector: 'app-product-detail',
@@ -11,6 +13,7 @@ import { StorageService } from '../../_services/storage.service';
 })
 export class ProductDetailComponent implements OnInit{
   product: Product;
+  @ViewChild('breadCrumbsComponent') childComponent?: BreadCrumbsComponent;
   constructor(private route: ActivatedRoute,private http: HttpClient,private storageService: StorageService) {
     this.product = new Product;
   }
@@ -23,6 +26,7 @@ export class ProductDetailComponent implements OnInit{
         this.product.price= data.price;
         this.product.photoID= data.photoID;
         this.product.description= data.description;
+        this.childComponent?.ngOnChanges(this.product);
     })
   }
   BuyProduct():void {

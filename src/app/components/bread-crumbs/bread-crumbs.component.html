@@ -1,0 +1,10 @@
+<div class="bread-crumbs-container">
+    <div class="bread-crumbs d-flex justify-content-center">
+        <div>
+            <p class="bread-crumbs-text">
+                <span *ngFor="let item of breabCrumbsItems; let i = index"><a href="#" [routerLink]="item"
+                        class="bread-crumbs-text " [ngClass]="{anchorActive: i == breabCrumbsItems.length-1}">{{GetBreadCrumbNameByItem(item)}}</a> <span *ngIf="i != breabCrumbsItems.length-1">></span> </span>
+            </p>
+        </div>
+    </div>
+</div>
