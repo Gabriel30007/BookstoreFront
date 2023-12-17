@@ -20,6 +20,7 @@ export class BreadCrumbsComponent {
       this.breabCrumbsItems?.push(changes.item.currentValue);
     }
     if(changes.id){
+      this.breabCrumbsItems?.push("/product");
       this.breabCrumbsItems?.push("/product/"+changes.id);
     }
   }
@@ -31,7 +32,7 @@ export class BreadCrumbsComponent {
       return "Головна";
     }
     else if(val == "/product"){
-      return "Каталог > Всі книги";
+      return "Каталог";
     }
     return "";
   }
