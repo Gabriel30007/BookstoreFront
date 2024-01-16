@@ -12,6 +12,7 @@ export class Product {
     photoID? : string;
     genre? : string;
     authorID? : string;
+    authorName? : string;
   
     constructor() {
       this.id ="1";
@@ -22,5 +23,6 @@ export class Product {
       this.photoID = "";
       this.genre = "";
       this.authorID = "";
+      this.authorName = "";
     }
   }

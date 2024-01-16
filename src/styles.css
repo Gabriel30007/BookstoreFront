@@ -19,3 +19,7 @@ body{
 .modal-backdrop {
     z-index: 0!important;
 }
+
+.cdk-overlay-container{
+    display: none;
+}

@@ -21,4 +21,23 @@ export class ProductService {
       httpOptions
     )
   }
+
+  GetproductExtendData(filters: any, page: number, itemsOnPage: number):Observable<any>{
+    return this.http.post(AUTH_API+'GetProductExtendData',{
+      filters,
+      page,
+      itemsOnPage
+    },
+    { responseType: 'text' })
+  }
+
+  GetCountProducts(filters:any) :Observable<any>{
+    return this.http.post(
+      AUTH_API + 'GetCountOfProducts',{
+        filters,
+        Page:0,
+        ItemsOnPage:0
+      },
+      { responseType: 'text' })
+    }
 }

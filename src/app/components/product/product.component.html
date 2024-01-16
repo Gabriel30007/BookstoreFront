@@ -16,50 +16,104 @@
         <p class="product-menu-item__text">Екслюзив</p>
       </a>
     </div>
-    <div class=" d-flex flex-row justify-content-around ">
-      <div class="filters-container">
-        <div class="search-container"></div>
-        <div class="sort-container"></div>
+    <div class="filters-container">
+      <div class="search-container">
+        <div class="search-container-left">
+          <input [(ngModel)]="searchFild" name="myVariableInput" type="text" class="search-container-right__input"
+            placeholder="Введіть назву книги" (input)="onSearchChange()">
+        </div>
+        <div class="search-container-right">
+          <img src="../../../assets/images/product/search.png" alt="" class="search-container-right__img">
+        </div>
       </div>
-      <div class="d-flex flex-column col-sm-3 filter-container d-flex align-items-center mt-2">
-        <div class="form-group has-search mt-2">
-          <span class="fa fa-search form-control-feedback"></span>
-          <input [(ngModel)]="searchFild" name="myVariableInput" type="text" class="form-control" placeholder="Search"
-            (input)="onSearchChange()">
+      <div class="sort-container">
+        <div class="sort-container-text">Сортувати за: </div>
+        <div class="">
+          <select [(ngModel)]="selectedSort" (change)="onSortChange($event)" class="sort-container-select" style="
+            text-align: center;
+            color: #595959 ;
+            font-family: Montserrat;
+            font-size: 16px;
+            font-style: normal;
+            padding-top: 15px;
+            font-weight: 300;
+            line-height: normal;">
+            <option value="true">Ціною (від дешевшого)</option>
+            <option value="false">Ціною (від дорожчого)</option>
+          </select>
         </div>
-        <br>
-        <label>Sort</label>
-        <div class="d-flex flex-row">
-          <div class="com-sm-6">
-            <select class="form-select">
-              <option selected value="Name">Name</option>
-              <option value="Price">Price</option>
-            </select>
+
+      </div>
+    </div>
+    <div class="product-content">
+
+
+      <div class="filter-container">
+          <p class="filter-container-header">Жанри</p>
+          <div>
+            <div class="filter-container-item">
+              <label class="product-chehkmark-container filter-container-item__text">Фантастика
+                <input [(ngModel)]="inputFantasy" type="checkbox" (change)="OnGenreChange()">
+                <span class="checkmark "></span>              
+              </label>
+            </div>
+            <div class="filter-container-item">
+              <label class="product-chehkmark-container filter-container-item__text">Класика
+                <input [(ngModel)]="inputClassic" type="checkbox" (change)="OnGenreChange()">
+                <span class="checkmark "></span>              
+              </label>
+            </div>
+            <div class="filter-container-item">
+              <label class="product-chehkmark-container filter-container-item__text">Комікси
+                <input [(ngModel)]="inputComics" type="checkbox" (change)="OnGenreChange()">
+                <span class="checkmark "></span>              
+              </label>
+            </div>
+            <div class="filter-container-item">
+              <label class="product-chehkmark-container filter-container-item__text">Трилери
+                <input [(ngModel)]="inputThrillers" type="checkbox" (change)="OnGenreChange()">
+                <span class="checkmark "></span>              
+              </label>
+            </div>
+            <div class="filter-container-item">
+              <label class="product-chehkmark-container filter-container-item__text">Поезія
+                <input [(ngModel)]="inputPoetry" type="checkbox" (change)="OnGenreChange()">
+                <span class="checkmark "></span>              
+              </label>
+            </div>
           </div>
-          <div class="com-sm-6">
-            <select class="form-select">
-              <option value="Desc">Descending</option>
-              <option selected value="Asc">Ascending</option>
-            </select>
-          </div>
-        </div>
-        <button type="button" class="btn btn-outline-secondary mt-3">Застосувати</button>
+
       </div>
 
       <div class="product-container">
         <div class="product-card" *ngFor="let product of contentFiltered; let i = index">
-          <div class="product-card-bloc">
-            <div class="d-flex align-items-center justify-content-center" style="width:100%">
+          <div class="product-card-block">
+            <div class="d-flex align-items-center justify-content-center product-card-img">
               <img class="product-img" src="data:image/jpg;base64, {{product.photoID}}">
             </div>
-            <div class="">
+            <div class="product-card-content">
               <p class="card-title">{{product.name}}</p>
-              <p class="card-text">{{product.price | number:'1.2'}} ₴</p>
-              <a href="#" [routerLink]="['/product',product.id]" class="btn btn-primary">Buy</a>
+              <p class="card-author">{{product.authorName}}</p>
+              <p class="card-description">{{product.description}}</p>
+              <div class="card-priceBuy-wrapper">
+                <p class="card-price">{{product.price | number:'1.2'}} ₴</p>
+                <a href="#" [routerLink]="['/product',product.id]" class="product-buy-btn">Купити</a>
+              </div>
+              
             </div>
           </div>
         </div>
+        <mat-paginator [length]="ProductSize"
+        (page)="handlePageEvent($event)"
+          [pageSize]="3"
+          [hidePageSize]="true"
+          [showFirstLastButtons]="false"
+          [pageIndex]="0"
+          aria-label="">
+        </mat-paginator>
       </div>
+     
+
     </div>
   </div>
 

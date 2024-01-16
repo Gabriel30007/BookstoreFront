@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Product } from '../../models/product.model';
 import { ProductService } from 'src/app/_services/product.service';
 import {NgForm} from '@angular/forms';
+import {PageEvent} from '@angular/material/paginator';
 
 const AUTH_API = 'https://localhost:44346/api/Product/';
 
@@ -26,23 +27,30 @@ export class ProductComponent implements OnInit {
   contentFiltered?: Product[];
   searchFild : string;
   sortBy: string;
+  ProductSize: number;
+  pageEvent?: PageEvent;
+  pageIndex: number;
+  pageSize: number;
+  filters: Record<string,string>;
+  selectedSort: boolean = false;
+  inputFantasy: boolean = false;
+  inputClassic: boolean = false;
+  inputComics: boolean = false;
+  inputThrillers: boolean = false;
+  inputPoetry: boolean = false;
+
   constructor(private router: Router,private storageService: StorageService,private http: HttpClient, private productService: ProductService) {
     this.searchFild = "";
     this.sortBy = "none";
-    
+    this.ProductSize = 0;
+    this.pageIndex = 0;
+    this.pageSize = 3;
+    this.filters ={};
   }
  
-  ngOnInit(): void {
+  ngOnInit(): void { 
     if(this.storageService.isLoggedIn()){
-      this.productService.GetProducts().subscribe({
-        next: data => {
-          this.content = data;
-          this.contentFiltered = data;
-        },
-        error: err => {
-          this.content = err;
-        }
-      });
+      this.LoadProductData();
     } else{
       this.router.navigate(['home'])
           .then(() => {
@@ -50,7 +58,14 @@ export class ProductComponent implements OnInit {
           });
     }
     
-}
+  }  
+
+  handlePageEvent(e: PageEvent) {
+    this.pageEvent = e;
+    this.pageIndex = e.pageIndex;
+    this.LoadProductData();
+  }
+
   buyProduct() :void{
 
   }
@@ -62,5 +77,54 @@ export class ProductComponent implements OnInit {
     } else{
       this.contentFiltered = this.content?.filter(x=>x.name?.toLocaleLowerCase().includes(this.searchFild.toLocaleLowerCase()));
     }
+  }
+
+  LoadProductData(){
+    this.loadCountOfProducts();
+    this.productService.GetproductExtendData(this.filters, this.pageIndex, this.pageSize).subscribe({
+      next: data => {
+        this.content = JSON.parse(data);
+      this.contentFiltered = JSON.parse(data);
+      },
+      error: err => {
+        this.content = err;
+      }
+    });
+  }
+
+  onSortChange(event:any){
+    this.filters['Order'] = this.selectedSort.toString();
+    this.LoadProductData();
+  }
+  OnGenreChange(){
+    let value = "";
+    if(this.inputFantasy){
+      value += "fantasy;";
+    } 
+    if(this.inputClassic){
+      value += "classic;";
+    } 
+    if(this.inputComics){
+      value += "comics;";
+    } 
+    if(this.inputThrillers){
+      value += "thrillers;";
+    } 
+    if(this.inputPoetry){
+      value += "poetry;";
+    } 
+    this.filters['Genre'] = value;
+    this.LoadProductData();
+  }
+
+  loadCountOfProducts(){
+    this.productService.GetCountProducts(this.filters).subscribe({
+      next: data => {
+       this.ProductSize = data;
+      },
+      error: err => {
+        this.content = err;
+      }
+    });
   }
 }
