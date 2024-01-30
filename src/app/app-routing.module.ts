@@ -10,6 +10,7 @@ import { BoardUserComponent } from './components/board-user/board-user.component
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { BucketComponent } from './components/bucket/bucket.component';
 import { NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'UserContent', component: BoardAdminComponent},
   { path: 'ProductContent', component: BoardAdminComponent},
   { path: 'BucketContent', component: BoardAdminComponent},
+  { path: 'bucket', component: BucketComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

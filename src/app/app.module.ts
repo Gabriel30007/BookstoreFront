@@ -21,6 +21,11 @@ import { IvyCarouselModule} from 'angular-responsive-carousel';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BreadCrumbsComponent } from './components/bread-crumbs/bread-crumbs.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { BucketComponent } from './components/bucket/bucket.component';
+import { MatSortModule} from '@angular/material/sort';
+import { MatTableModule} from '@angular/material/table';
+
 
 
 @NgModule({
@@ -36,6 +41,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     ProductDetailComponent,
     ModalWindowComponent,
     BreadCrumbsComponent,
+    BucketComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +53,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     CarouselModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSnackBarModule,
+    MatTableModule, 
+    MatSortModule
   ],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
   bootstrap: [AppComponent]

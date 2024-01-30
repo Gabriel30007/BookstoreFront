@@ -16,8 +16,7 @@
 
     </ul>
     <ul class="bookstore-nav-right">
-      <img src="../assets/images/basket.svg">
-      <img src="../assets/images/like.svg">
+      <img (click)="openBucket()" src="../assets/images/basket.svg" style="cursor: pointer;">
       <div class="bookstore-nav-right-login">
         <a *ngIf="!isLoggedIn" href="/register" class="bookstore-nav-right-txt" routerLink="register">Sign Up</a>
         <a *ngIf="!isLoggedIn" href="/login" class="bookstore-nav-right-txt" routerLink="login">Login</a>

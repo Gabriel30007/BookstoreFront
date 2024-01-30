@@ -1,0 +1,37 @@
+<div class="bucket-wrapper">
+    <div class="bucket-center-container">
+        <div class="bucket-header">
+            <img src="../../../assets/images/bucket/history.png" alt="Історія покупок" class="bucket-header__img">
+            <p class="bucket-header__text">
+                Історія покупок
+            </p>
+        </div>
+        <table matSort (matSortChange)="sortData($event)" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Фото</th>
+                    <th scope="col" mat-sort-header="productName">Назва книги</th>
+                    <th scope="col" mat-sort-header="createdOn">Дата покупки</th>
+                    <th scope="col" mat-sort-header="authorName">Автор</th>
+                    <th scope="col" mat-sort-header="price">Ціна</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let product of content; let i = index">
+
+                    <td scope="row"><img class="product-img" src="data:image/jpg;base64, {{product.productPhoto}}"></td>
+                    <td>{{product.productName}}</td>
+                    <td>{{product.createdOn | date:"MMM dd, yyyy 'at' hh:mm a" }}</td>
+                    <td>{{product.authorName}}</td>
+                    <td>{{product.price}}</td>
+
+
+                </tr>
+            </tbody>
+
+
+
+        </table>
+    </div>
+</div>

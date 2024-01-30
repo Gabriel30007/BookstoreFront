@@ -7,21 +7,20 @@ import { Guid } from "guid-typescript";
 })
 export class BreadCrumbsComponent {
   @Input() item : any; 
-  breabCrumbsItems : string[] = [];
+  breabCrumbsItems : Set<string> = new Set<string>();
 
   ngOnInit() {
     console.log(typeof this.item);
   }
 
   ngOnChanges(changes: any) {
-    this.breabCrumbsItems = [];
-    this.breabCrumbsItems?.push("/home");
+    this.breabCrumbsItems?.add("/home");
     if(typeof changes.item?.currentValue == 'string'){
-      this.breabCrumbsItems?.push(changes.item.currentValue);
+      this.breabCrumbsItems?.add(changes.item.currentValue);
     }
     if(changes.id){
-      this.breabCrumbsItems?.push("/product");
-      this.breabCrumbsItems?.push("/product/"+changes.id);
+      this.breabCrumbsItems?.add("/product");
+      this.breabCrumbsItems?.add("/product/"+changes.id);
     }
   }
 

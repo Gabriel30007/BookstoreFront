@@ -2,13 +2,20 @@
 <div class="singleProduct">
     <div class="singleProductContainer">
         <img class="singleProductImg" src="data:image/jpg;base64, {{product.photoID}}">
-        <div>
-            <p class="product-text-title">{{product.name}}</p>
-            <p class="card-text">Price: {{product.price}} ₴</p>
-            <p class="card-text">description:</p>
-            <p class="card-text">{{product.description}}</p>
-            <button (click)="BuyProduct()" class="btn btn-primary">Buy</button>
-        </div>
+        <div class="product-card-content">
+            <p class="card-title">{{product.name}}</p>
+            <p class="card-author">{{product.authorName}}</p>            
+            <p class="card-description">{{product.description}}</p>
+            <div class="genre-container">
+                <p class="card-genre__header">Жанр:</p>
+                <p class="card-genre__item">{{product.genre}}</p>
+            </div>
+            <div class="card-priceBuy-wrapper">
+              <p class="card-price">{{product.price | number:'1.2'}} ₴</p>
+              <button class="product-buy-btn" (click)="BuyProduct()">Купити</button>
+            </div>
+            
+          </div>
     </div>
 </div>
 

@@ -60,4 +60,7 @@ export class AppComponent {
       }
     });
   }
+  openBucket():void{
+    this.router.navigate(['bucket'])
+  }
 }

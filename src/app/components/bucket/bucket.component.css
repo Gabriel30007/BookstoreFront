@@ -1,0 +1,44 @@
+.bucket-wrapper {
+    margin-bottom: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.bucket-center-container {
+    width: 1280px;
+
+}
+
+.bucket-header__text {   
+    color: #041F1E;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.bucket-header__img{
+    width: 30px;
+    height: 30px;
+}
+
+.bucket-header{
+    text-align: center;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-img{
+    width: 60px;
+    height: 50px;
+    box-sizing: border-box;
+    background-image: inherit;
+    border-radius: 10px;
+}

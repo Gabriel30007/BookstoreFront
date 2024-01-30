@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url(reset.css);
-.center-registerForm{
+
+.center-registerForm {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,18 +9,44 @@
     min-height: 55vh;
     width: 30%;
 }
-body{
-    background-color:  #fff;
-}
-.form-container{
-    background-color: #343a40;
-    border-radius: 30px;   
-    
-}
-.modal-backdrop {
-    z-index: 0!important;
+
+body {
+    background-color: #fff;
 }
 
-.cdk-overlay-container{
+.form-container {
+    background-color: #343a40;
+    border-radius: 30px;
+
+}
+
+.modal-backdrop {
+    z-index: 0 !important;
+}
+
+.cdk-overlay-container {
+    right: 0;
+    position: fixed;
+    bottom: 0;
+    z-index: 1000;
+}
+
+.mdc-snackbar__surface {
+    background-color: #b6ffb6 !important;
+}
+
+.mat-mdc-snack-bar-action .mdc-button__label {
+    color: black;
+    cursor: pointer;
+}
+
+.mat-mdc-snack-bar-actions {
+    border-left: 2px solid rgb(153, 240, 96);
+}
+
+.cdk-describedby-message-container{
+    display: none;
+}
+.cdk-live-announcer-element{
     display: none;
 }
