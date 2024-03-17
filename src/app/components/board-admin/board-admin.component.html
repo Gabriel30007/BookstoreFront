@@ -5,7 +5,8 @@
     <a href="BucketContent" class="menuItems">Bucket</a>
   </div>
   <div>
-    <button  type="button" class="btn btn-success m-2" (click)="open(mymodal);CreateElement()" >Add</button>
+    <button *ngIf="UserFlag" type="button" class="btn btn-success m-2" (click)="openModal()">Add</button>
+    <button *ngIf="ProductFlag" type="button" class="btn btn-success m-2" (click)="CreateProduct()">Add</button>
   </div>
  
   <table class="table table-borderless mb-0" style="text-align: center;">
@@ -26,73 +27,30 @@
         <th>Edit</th>
         <th>Delete</th>
       </tr>
-      <tr *ngIf="BucketFlag">
-        <th>Name</th>
-        <th>Email</th>
-        <th>Role</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
     </thead>
     <tbody *ngIf="UserFlag">
       <tr *ngFor="let user of content; let i = index">
         <td>{{user.name}}</td>
         <td>{{user.email}}</td>
         <td>{{user.roles}}</td>
-        <td style="text-align: center;"><img (click)="open(mymodal);EditElement(user.id)"
+        <td style="text-align: center;"><img (click)="openModalUpdate(user.id)"
             src="../../../assets/images/pencil.png" class="action-img" alt=""></td>
         <td style="text-align: center;"><img (click)="DeleteElement(user.id)"
             src="../../../assets/images/icons8-trash.svg" class="action-img" alt=""></td>
       </tr>
     </tbody>
     <tbody *ngIf="ProductFlag">
-      <tr *ngFor="let user of content; let i = index">
-        <td>{{user.name}}</td>
-        <td>{{user.createdOn}}</td>
-        <td>{{user.price}}</td>
-        <td>{{user.description}}</td>
-        <td>{{user.photoID > ""}}</td>
-        <td> </td>
-        <td></td>
-      </tr>
-    </tbody>
-    <tbody *ngIf="BucketFlag">
-      <tr *ngFor="let user of content; let i = index">
-        <td>{{user.name}}</td>
-        <td>{{user.email}}</td>
-        <td>{{user.roles}}</td>
-        <td></td>
-        <td></td>
+      <tr *ngFor="let product of content; let i = index">
+        <td>{{product.name}}</td>
+        <td>{{product.createdOn}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.description}}</td>
+        <td>{{product.photoID > ""}}</td>
+        <td style="text-align: center;"><img (click)="UpdateProduct(product.id)"
+          src="../../../assets/images/pencil.png" class="action-img" alt=""></td>
+      <td style="text-align: center;"><img (click)="DeleteProduct(product.id)"
+          src="../../../assets/images/icons8-trash.svg" class="action-img" alt=""></td>
       </tr>
     </tbody>
   </table>
 </div>
-<ng-template #mymodal let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">×</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form [formGroup]="EditObj">
-      <div class="input-group">
-        <span class="input-group-text">name</span>
-        <input formControlName="name" name="name" type="text" aria-label="First name" class="form-control">
-      </div>
-      <div class="input-group">
-        <span class="input-group-text">email</span>
-        <input formControlName="email" type="text" aria-label="First name" class="form-control">
-      </div>
-      <div class="input-group">
-        <span class="input-group-text">Password</span>
-        <input formControlName="password" type="text" aria-label="First name" class="form-control">
-      </div>
-    </form>
-  </div>
-
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click');EditInsertRoute()">Ok</button>
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
-  </div>
-</ng-template>

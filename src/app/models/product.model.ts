@@ -1,28 +1,30 @@
-import { Injectable } from '@angular/core';
-@Injectable({
-    providedIn: 'root',
-  })
-
 export class Product {
     id? : string;
     creadon?: Date;
     name?: string;
     price?: number;
     description?: string;
+    photoStr?: string;
     photoID? : string;
+    genreID? : string;
     genre? : string;
     authorID? : string;
     authorName? : string;
   
-    constructor() {
-      this.id ="1";
-      this.creadon = new Date();
-      this.price = 0;
-      this.name = "";
-      this.description = "";
-      this.photoID = "";
-      this.genre = "";
-      this.authorID = "";
-      this.authorName = "";
+
+    constructor();
+    constructor(id?: string);
+    constructor(id?: string, createdOn?: Date, price?: number, name?: string, description?: string, photoStr?: string, photoID?: string, genreID?: string, genre?: string, authorID?: string, authorName?: string) {
+      this.id =id;
+      this.creadon = createdOn;
+      this.price = price;
+      this.name = name;
+      this.description = description;
+      this.photoStr = photoID;
+      this.photoID = photoID;
+      this.genreID = genreID;
+      this.genre = genre;
+      this.authorID = authorID;
+      this.authorName = authorName;
     }
   }

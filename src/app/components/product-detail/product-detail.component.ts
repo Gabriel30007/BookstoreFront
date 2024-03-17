@@ -5,9 +5,7 @@ import { Product } from '../../models/product.model';
 import { StorageService } from '../../_services/storage.service';
 import { BreadCrumbsComponent } from '../bread-crumbs/bread-crumbs.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { ProductService } from 'src/app/_services/product.service';
 
 
 @Component({
@@ -19,7 +17,7 @@ export class ProductDetailComponent implements OnInit{
   product: Product;
   @ViewChild('breadCrumbsComponent') childComponent?: BreadCrumbsComponent;
 
-  constructor(private route: ActivatedRoute,private http: HttpClient,private storageService: StorageService, private _snackBar: MatSnackBar) {
+  constructor(private route: ActivatedRoute,private http: HttpClient,private storageService: StorageService, private _snackBar: MatSnackBar, public productService:ProductService) {
     this.product = new Product;
   }
   
@@ -32,10 +30,11 @@ export class ProductDetailComponent implements OnInit{
   ngOnInit() {
     const routeParams = this.route.snapshot.paramMap;
     const productIdFromRoute = routeParams.get('id');
-    this.http.get<any>('https://localhost:44346/api/Product/GetSingleExtendProduct?id='+productIdFromRoute).subscribe(data =>{
-        this.product = data;
-        this.childComponent?.ngOnChanges(this.product);
-    })
+    if(productIdFromRoute)
+      this.productService.GetProductByID(productIdFromRoute).subscribe(data =>{
+          this.product = data;
+          this.childComponent?.ngOnChanges(this.product);
+      });
   }
   BuyProduct():void {
    this.product.id;
@@ -51,4 +50,6 @@ export class ProductDetailComponent implements OnInit{
   }
   });
   }
+
+
 }

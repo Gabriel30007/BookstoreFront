@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { StorageService } from './_services/storage.service';
 import { AuthService } from './_services/auth.service';
 import { Router } from '@angular/router';
@@ -16,9 +16,9 @@ export class AppComponent {
   username?: string;
   title: string;
   allFeedSubscription: any;
-  constructor(private storageService: StorageService, private authService: AuthService,private router: Router, private signalrService : SignalrService) {
+  constructor(private storageService: StorageService, private authService: AuthService, private router: Router, private signalrService: SignalrService) {
     this.title = "FrontEndApp"
-   }
+  }
 
   ngOnInit(): void {
     this.isLoggedIn = this.storageService.isLoggedIn();
@@ -28,7 +28,7 @@ export class AppComponent {
       this.roles = user.roles;
       this.showAdminBoard = this.roles.includes('Role_Admin');
       this.username = user.username;
-    } 
+    }
 
     this.signalrService.startConnection().then(() => {
       console.log("connected");
@@ -38,9 +38,9 @@ export class AppComponent {
       this.signalrService.listenNewRegisteredUser();
       // 3 - subscribe to messages received
       this.signalrService.AllFeedObservable
-            .subscribe((res: User) => {
-              console.log(res);
-            });
+        .subscribe((res: User) => {
+          console.log(res);
+        });
     });
   }
 
@@ -50,9 +50,9 @@ export class AppComponent {
         console.log(res);
         this.storageService.clean();
         this.router.navigate(['home'])
-        .then(() => {
-          window.location.reload();
-        });
+          .then(() => {
+            window.location.reload();
+          });
         window.location.reload();
       },
       error: err => {
@@ -60,7 +60,7 @@ export class AppComponent {
       }
     });
   }
-  openBucket():void{
+  openBucket(): void {
     this.router.navigate(['bucket'])
-  }
+  }  
 }

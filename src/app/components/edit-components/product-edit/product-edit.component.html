@@ -1,0 +1,50 @@
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="EditObj">
+      <div class="input-group">
+        <span class="input-group-text">name</span>
+        <input formControlName="name" name="name" type="text" aria-label="First name" class="form-control">
+      </div>
+      <div class="input-group">
+        <span class="input-group-text">price</span>
+        <input formControlName="price" type="text" aria-label="First name" class="form-control">
+      </div>
+      <div class="input-group">
+        <span class="input-group-text">Description</span>
+        <input formControlName="description" type="text" aria-label="First name" class="form-control">
+      </div>
+      <div class="input-group">
+        <span class="input-group-text">Genre</span>
+        <select formControlName="genre" class="form-control" [(ngModel)]="selectedGenre">
+          <option *ngFor="let a of genres" [ngValue]="a.id">{{a.name}}</option>
+      </select>
+      </div>
+      <div class="input-group">
+        <span class="input-group-text">Author</span>
+        <select formControlName="author" class="form-control" [(ngModel)]="selectedAuthor">
+            <option *ngFor="let a of authors" [ngValue]="a.id">{{a.name}}</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <span class="input-group-text">Photo</span>
+        <input (change)="onFileSelected($event)" formControlName="photo" type="file" accept="image/png, image/jpeg" aria-label="First name"
+          class="form-control">
+      </div>
+      <div class="d-flex justify-content-center">
+        <img id="productPhoto" class="ProductImg" src="{{photoSrc}}">
+      </div>
+      
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="SaveProduct();modal.close('Save click')">Ok</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+  </div>
+</ng-template>

@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { UserService } from '../../_services/user.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ProductService } from 'src/app/_services/product.service';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl } from '@angular/forms';
-import {ModalWindowComponent} from 'src/app/components/modal-window/modal-window.component';
+import { UserEditComponent } from '../edit-components/user-edit/user-edit.component';
+import { User } from 'src/app/models/user.model';
+import { ProductEditComponent } from '../edit-components/product-edit/product-edit.component';
+import { Product } from 'src/app/models/product.model';
 
 @Component({
   selector: 'app-board-admin',
@@ -16,34 +19,35 @@ import {ModalWindowComponent} from 'src/app/components/modal-window/modal-window
 export class BoardAdminComponent implements OnInit {
   content?: any[];
   errorMsg?: string;
-  UserFlag?:boolean;
-  ProductFlag?:boolean;
-  BucketFlag?:boolean;
-  closeResult?:any;
+  UserFlag?: boolean;
+  ProductFlag?: boolean;
+  BucketFlag?: boolean;
+  closeResult?: any;
   EditObj: FormGroup;
-  child?:ModalWindowComponent;
-  public selectedId?:any;
+  public selectedId?: any;
   IsInsert?: boolean;
-  constructor(private modalService:NgbModal,private http: HttpClient,private router: Router,private userService: UserService,private productService: ProductService) {
+
+  constructor(private modalService: NgbModal, private http: HttpClient, private router: Router, private userService: UserService, private productService: ProductService, public viewContainerRef: ViewContainerRef) {
     this.EditObj = new FormGroup({
-      id:new FormControl(''),
+      id: new FormControl(''),
       name: new FormControl(''),
       email: new FormControl(''),
       password: new FormControl(''),
       roles: new FormControl('')
-      
+
     });
-   }
- 
+  }
+
   ngOnInit(): void {
     this.routerSettings();
   }
-  GetUserContent():void{
+  GetUserContent(): void {
     this.userService.getAllUsers().subscribe({
       next: data => {
         this.content = JSON.parse(data);
       },
-      error: err => {console.log(err)
+      error: err => {
+        console.log(err)
         if (err.error) {
           this.errorMsg = JSON.parse(err.error).message;
         } else {
@@ -53,12 +57,13 @@ export class BoardAdminComponent implements OnInit {
     });
   }
 
-  GetProductContent():void{
+  GetProductContent(): void {
     this.productService.GetProducts().subscribe({
       next: data => {
         this.content = data;
       },
-      error: err => {console.log(err)
+      error: err => {
+        console.log(err)
         if (err.error) {
           this.errorMsg = JSON.parse(err.error).message;
         } else {
@@ -67,86 +72,32 @@ export class BoardAdminComponent implements OnInit {
       }
     });
   }
-  AddElement():void{
-    
+  AddElement(): void {
+
     switch (this.router.url.toString()) {
-      case "/UserContent":{
+      case "/UserContent": {
         this.UserFlag = true;
         break;
       }
-      case "/ProductContent":{
+      case "/ProductContent": {
         this.ProductFlag = true;
         break;
       }
-      case "/BucketContent":{
+      case "/BucketContent": {
         this.BucketFlag = true;
         break;
       }
-      
-  }
-}
-  CreateElement():void{
-    this.IsInsert =true;
-    this.EditObj.controls['id'].setValue("");
-    this.EditObj.controls['name'].setValue("");
-    this.EditObj.controls['email'].setValue("");
-    this.EditObj.controls['password'].setValue("");
-    this.EditObj.controls['roles'].setValue("");
-  }
 
-  CreateUser():void{
-    this.userService.saveUser('00000000-0000-0000-0000-000000000000',
-    this.EditObj.controls['name'].value,
-    this.EditObj.controls['email'].value,
-    this.EditObj.controls['password'].value,
-    'ROLE_USER').subscribe({
-      next: data => {
-        this.routerSettings();
-      },
-      error: err => {console.log(err)
-        if (err.error) {
-          this.errorMsg = JSON.parse(err.error).message;
-        } else {
-          this.errorMsg = "Error with status: " + err.status;
-        }
-      }
-    });
-  }
-
-  EditElement(id:any):void{ 
-    this.IsInsert =false;
-    this.userService.getUserByID(id).subscribe({
-      next: data => {
-        let selectedObj = JSON.parse(data);
-        this.EditObj.controls['id'].setValue(selectedObj.id);
-        this.EditObj.controls['name'].setValue(selectedObj.name);
-        this.EditObj.controls['email'].setValue(selectedObj.email);
-        this.EditObj.controls['password'].setValue(selectedObj.password);
-        this.EditObj.controls['roles'].setValue(selectedObj.roles);
-      },
-      error: err => {console.log(err)
-        if (err.error) {
-          this.errorMsg = JSON.parse(err.error).message;
-        } else {
-          this.errorMsg = "Error with status: " + err.status;
-        }
-      }
-    });
-  }
-  EditInsertRoute():void{
-    if(this.IsInsert == true){
-      this.CreateUser();
-    }else{
-      this.EditUser();
     }
   }
-  DeleteElement(id:string){
-    if(confirm("Ви дійсно хочете видалити запис?")){
+  DeleteElement(id: string) {
+    if (confirm("Ви дійсно хочете видалити запис?")) {
       this.userService.deleteUser(id).subscribe({
         next: data => {
           this.routerSettings();
         },
-        error: err => {console.log(err)
+        error: err => {
+          console.log(err)
           if (err.error) {
             this.errorMsg = JSON.parse(err.error).message;
           } else {
@@ -157,66 +108,75 @@ export class BoardAdminComponent implements OnInit {
     }
   }
 
-  EditUser(){
-   this.userService.saveUser(
-      this.EditObj.controls['id'].value,
-      this.EditObj.controls['name'].value,
-      this.EditObj.controls['email'].value,
-      this.EditObj.controls['password'].value,
-      this.EditObj.controls['roles'].value,
-    ).subscribe({
-      next: data => {
-        this.routerSettings();
-      },
-      error: err => {console.log(err)
-        if (err.error) {
-          this.errorMsg = JSON.parse(err.error).message;
-        } else {
-          this.errorMsg = "Error with status: " + err.status;
-        }
-      }
-    });
-  }
-
-  routerSettings(){
+  routerSettings() {
     switch (this.router.url.toString()) {
-      case "/UserContent":{
+      case "/UserContent": {
         this.UserFlag = true;
         this.GetUserContent();
         break;
       }
-      case "/ProductContent":{
+      case "/ProductContent": {
         this.ProductFlag = true;
         this.GetProductContent();
         break;
       }
-      case "/BucketContent":{
+      case "/BucketContent": {
         this.BucketFlag = true;
         break;
       }
-      default:{
+      default: {
         this.router.navigateByUrl("/UserContent");
         this.UserFlag = true;
         this.GetUserContent();
       }
-  }
+    }
   }
 
-  open(content:any) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  openModal(): void {
+    let editRef = this.viewContainerRef.createComponent(UserEditComponent);
+    editRef.instance.user = new User();
+
+    let onConfirmationObs = editRef.instance.OnConfirmation.subscribe(() => {
+      this.routerSettings();
+      onConfirmationObs.unsubscribe();
+      editRef.destroy();
     });
-  }  
- 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return  `with: ${reason}`;
+  }
+
+  openModalUpdate(id: string): void {
+    let editRef = this.viewContainerRef.createComponent(UserEditComponent);
+    editRef.instance.user = new User(id);
+
+    let onConfirmationObs = editRef.instance.OnConfirmation.subscribe(() => {
+      this.routerSettings();
+      onConfirmationObs.unsubscribe();
+      editRef.destroy();
+    })
+  }
+
+  CreateProduct():void{
+    let editRef = this.viewContainerRef.createComponent(ProductEditComponent);
+  }
+  UpdateProduct(id: string):void{
+    let editRef = this.viewContainerRef.createComponent(ProductEditComponent);
+    editRef.instance.product = new Product(id);
+  }
+
+  DeleteProduct(id:string):void{
+    if (confirm("Ви дійсно хочете видалити запис?")) {
+      this.productService.DeleteProduct(id).subscribe({
+        next: data => {
+          this.routerSettings();
+        },
+        error: err => {
+          console.log(err)
+          if (err.error) {
+            this.errorMsg = JSON.parse(err.error).message;
+          } else {
+            this.errorMsg = "Error with status: " + err.status;
+          }
+        }
+      });
     }
   }
 }

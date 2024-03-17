@@ -14,7 +14,6 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ModalWindowComponent } from './components/modal-window/modal-window.component';
 import {AuthInterceptor} from './http-interceptors/auth.interceptor'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IvyCarouselModule} from 'angular-responsive-carousel';
@@ -25,6 +24,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { BucketComponent } from './components/bucket/bucket.component';
 import { MatSortModule} from '@angular/material/sort';
 import { MatTableModule} from '@angular/material/table';
+import { ProductEditComponent } from './components/edit-components/product-edit/product-edit.component';
+import { ViewContainerDirective } from './components/edit-components/ViewContainer/view-container.directive';
+import { UserEditComponent } from './components/edit-components/user-edit/user-edit.component';
 
 
 
@@ -39,9 +41,11 @@ import { MatTableModule} from '@angular/material/table';
     BoardUserComponent,
     ProductComponent,
     ProductDetailComponent,
-    ModalWindowComponent,
     BreadCrumbsComponent,
     BucketComponent,
+    ProductEditComponent,
+    ViewContainerDirective,
+    UserEditComponent,
   ],
   imports: [
     BrowserModule,
